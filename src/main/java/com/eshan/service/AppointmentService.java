@@ -23,6 +23,6 @@ public class AppointmentService {
 	}
 	
 	public List<Appointment> getBySearch(String searchstr){
-		return appointmentrepo.findByDescription(searchstr);
+		return appointmentrepo.searchByDescription(("%"+searchstr+"%"));
 	}
 }

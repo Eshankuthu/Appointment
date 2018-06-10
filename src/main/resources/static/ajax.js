@@ -2,20 +2,18 @@ $(document).ready(function(){
 
 $("#btnnew").click(function(){
         $("#btnnew").hide();
-        $(".add-form").show();
+        $(".appointment-form").show();
     })
 
 
 $("#btn-cancel").click(function(){
 	$("#btnnew").show();
-	$(".add-form").hide();
+	$(".appointment-form").hide();
 })
 
    $('#datepicker').datepicker({
        minDate: new Date()
    });
-
-
 
 
 var getAppointments = $("#btnSearch").click(function() {

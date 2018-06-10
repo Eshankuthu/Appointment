@@ -16,28 +16,22 @@ import com.eshan.service.AppointmentService;
 
 @RestController
 public class AppointmentRestController {
-	
+
 	@Autowired
 	AppointmentService appointmentService;
-	
-	@GetMapping(value="/appointment")
-    public  ResponseEntity<List<Appointment>> findAppointBySearch(String searchstr){
-		
-		System.out.println("************************"+searchstr);
-		List<Appointment> appointment= new ArrayList<>();
-        if(searchstr!=(null) && searchstr.trim().length()>0){
-        	appointment= appointmentService.getBySearch(searchstr);
-        }else {
-        appointment= appointmentService.getAllAppointment();
-        }
-        return new ResponseEntity<>(appointment, HttpStatus.OK);
-    }
 
-	
-	@PostMapping(value="/addAppointment")
-	public ResponseEntity<Appointment> createAppointment(@RequestBody Appointment appointment){
+	@GetMapping("/appointment")
+	public List<Appointment> getAppointments(String str) {
+		if (str != (null) && str.trim().length() > 0) {
+			return appointmentService.getBySearch(str);
+		}
+		return appointmentService.getAllAppointment();
+	}
+
+	@PostMapping(value = "/add")
+	public ResponseEntity<Appointment> createAppointment(@RequestBody Appointment appointment) {
 		appointmentService.saveAppointment(appointment);
 		return new ResponseEntity<>(appointment, HttpStatus.CREATED);
-	
+
 	}
 }
