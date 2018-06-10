@@ -1,5 +1,6 @@
 package com.eshan.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +22,14 @@ public class AppointmentRestController {
 	
 	@GetMapping(value="/appointment")
     public  ResponseEntity<List<Appointment>> findAppointBySearch(String searchstr){
-		List<Appointment> appointment;
+		
+		System.out.println("************************"+searchstr);
+		List<Appointment> appointment= new ArrayList<>();
         if(searchstr!=(null) && searchstr.trim().length()>0){
         	appointment= appointmentService.getBySearch(searchstr);
-        }
+        }else {
         appointment= appointmentService.getAllAppointment();
-        
+        }
         return new ResponseEntity<>(appointment, HttpStatus.OK);
     }
 
